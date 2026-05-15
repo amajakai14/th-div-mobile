@@ -1,0 +1,68 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+
+/* Platform-specific font families */
+@media android {
+  :root {
+    --font-mono: monospace;
+    --font-rounded: normal;
+    --font-serif: serif;
+    --font-sans: normal;
+  }
+}
+
+@media ios {
+  :root {
+    --font-mono: ui-monospace;
+    --font-serif: ui-serif;
+    --font-sans: system-ui;
+    --font-rounded: ui-rounded;
+  }
+}
+
+/* Design token theme colors from DESIGN.md */
+@layer theme {
+  @theme {
+    /* Light theme base colors (default) */
+    --color-bg: #F6F4EE;
+    --color-surface: #FFFFFF;
+    --color-surface2: #F0EDE6;
+    --color-text: #15181D;
+    --color-muted: #8A8478;
+    --color-out-month: #C9C3B5;
+    --color-weekend: #B65A7B;
+    --color-divider: #E7E2D6;
+    --color-selected-bg: #EBE6D8;
+    --color-shell-bg: #EAE4D3;
+
+    /* Functional accent colors */
+    --color-xd: #E25241;
+    --color-pay: #1F9D6B;
+    --color-today: #2D6CDF;
+
+    /* Alpha variants */
+    --color-xd-alpha8: #E2524114;
+    --color-xd-alpha20: #E2524133;
+    --color-pay-alpha8: #1F9D6B14;
+    --color-pay-alpha20: #1F9D6B33;
+    --color-today-alpha8: #2D6CDF14;
+    --color-today-alpha20: #2D6CDF33;
+
+    /* Border radius tokens */
+    --radius-sm: 8px;
+    --radius-md: 10px;
+    --radius-cell: 12px;
+    --radius-card: 14px;
+    --radius-sheet: 24px;
+    --radius-pill: 999px;
+
+    /* Font size tokens */
+    --text-eyebrow: 11px;
+    --text-caption: 11px;
+    --text-body: 13px;
+    --text-card-title: 15px;
+    --text-section-title: 18px;
+    --text-display: 26px;
+  }
+}
