@@ -12,7 +12,7 @@ function formatDate(iso: string | null): string {
 }
 
 export default function TickerModal() {
-  const { C, accent, radius, font } = useTheme();
+  const { C, accent, radius, font, dark } = useTheme();
   const router = useRouter();
   const { ticker, date } = useLocalSearchParams<{ ticker: string; date: string }>();
 
@@ -21,7 +21,7 @@ export default function TickerModal() {
   const row = data.find(r => r.ticker === ticker);
 
   const s = StyleSheet.create({
-    overlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(15,12,4,0.42)' },
+    overlay: { flex: 1, justifyContent: 'flex-end', backgroundColor: dark ? 'rgba(255,255,255,0.15)' : 'rgba(15,12,4,0.42)' },
     sheet: { backgroundColor: C.surface, borderTopLeftRadius: radius.sheet, borderTopRightRadius: radius.sheet, paddingBottom: 32 },
     handle: { width: 40, height: 5, borderRadius: 2.5, backgroundColor: C.divider, alignSelf: 'center', marginTop: 12, marginBottom: 16 },
     hero: { backgroundColor: C.surface2, paddingHorizontal: 20, paddingBottom: 24, paddingTop: 8, marginBottom: 1 },
