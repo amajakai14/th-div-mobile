@@ -2,7 +2,7 @@ import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { registerExpoPushToken } from '../services/api';
 
 export type PushStatus = 'idle' | 'registering' | 'registered' | 'denied' | 'error';
@@ -14,10 +14,10 @@ if (Platform.OS === 'android') {
   });
 }
 
-export function usePushToken(_token: string | null | undefined) {
+export function usePushToken() {
   const [status, setStatus] = useState<PushStatus>('idle');
 
-  async function register() {
+  const register = useCallback(async () => {
     if (!Device.isDevice) {
       setStatus('denied');
       return;
@@ -32,15 +32,20 @@ export function usePushToken(_token: string | null | undefined) {
     setStatus('registering');
 
     try {
-      const projectId =
-        Constants.expoConfig?.extra?.eas?.projectId as string | undefined;
+      const projectId = Constants.expoConfig?.extra?.eas?.projectId as string | undefined;
+      if (!projectId) {
+        console.warn('[usePushToken] EAS projectId not configured');
+        setStatus('error');
+        return;
+      }
       const expoPushToken = await Notifications.getExpoPushTokenAsync({ projectId });
       await registerExpoPushToken(expoPushToken.data);
       setStatus('registered');
-    } catch {
+    } catch (err) {
+      console.error('[usePushToken] registration failed:', err);
       setStatus('error');
     }
-  }
+  }, []);
 
   return { status, register };
 }
