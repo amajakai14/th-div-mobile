@@ -112,7 +112,7 @@ export default function ProfileScreen() {
             onPress={handleAdd}
             style={[styles.addBtn, { backgroundColor: accent.today }]}
           >
-            <Text style={styles.addBtnLabel}>Add</Text>
+            <Text style={[styles.addBtnLabel, { color: C.surface }]}>Add</Text>
           </TouchableOpacity>
         </View>
 
@@ -192,7 +192,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   addBtnLabel: {
-    color: '#FFFFFF',
     fontWeight: '600',
   },
   tickerList: {
