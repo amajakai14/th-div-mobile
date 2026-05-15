@@ -8,13 +8,13 @@ interface HoldingCardProps {
 }
 
 export function HoldingCard({ holding, onRemove }: HoldingCardProps) {
-  const { C } = useTheme();
+  const { C, accent } = useTheme();
   const initials = holding.ticker.slice(0, 2).toUpperCase();
 
   return (
     <View style={[styles.card, { backgroundColor: C.surface }]}>
-      <View style={styles.tile}>
-        <Text style={styles.initials}>{initials}</Text>
+      <View style={[styles.tile, { backgroundColor: accent.xd + '14', borderColor: accent.xd + '33' }]}>
+        <Text style={[styles.initials, { color: accent.xd }]}>{initials}</Text>
       </View>
       <View style={styles.info}>
         <Text style={[styles.ticker, { color: C.text }]} numberOfLines={1}>
@@ -43,16 +43,13 @@ const styles = StyleSheet.create({
   tile: {
     width: 42,
     height: 42,
-    backgroundColor: '#E2524114',
     borderWidth: 1,
-    borderColor: '#E2524133',
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
     flexShrink: 0,
   },
   initials: {
-    color: '#E25241',
     fontSize: 11,
     fontWeight: '700',
   },

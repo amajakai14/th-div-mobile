@@ -121,9 +121,9 @@ export default function PortfolioScreen() {
             disabled={addHolding.isPending}
           >
             {addHolding.isPending ? (
-              <ActivityIndicator color="#FFFFFF" size="small" />
+              <ActivityIndicator color={C.surface} size="small" />
             ) : (
-              <Text style={styles.addBtnText}>Add</Text>
+              <Text style={[styles.addBtnText, { color: C.surface }]}>Add</Text>
             )}
           </Pressable>
         </View>
@@ -205,7 +205,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   addBtnText: {
-    color: '#FFFFFF',
     fontSize: 13,
     fontWeight: '600',
   },
