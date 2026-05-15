@@ -66,3 +66,17 @@
     --text-display: 26px;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-bg: #0E1116;
+    --color-surface: #171B22;
+    --color-surface2: #1F2530;
+    --color-text: #ECEFF4;
+    --color-muted: #8893A4;
+    --color-out-month: #3A4250;
+    --color-weekend: #A4537A;
+    --color-divider: #262C36;
+    --color-selected-bg: #222A36;
+  }
+}
