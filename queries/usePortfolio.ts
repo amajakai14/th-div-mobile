@@ -31,7 +31,7 @@ export function useAddHolding() {
   return useMutation({
     mutationFn: ({ ticker, quantity }: { ticker: string; quantity: number }) =>
       addHolding(ticker, quantity),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['portfolio', userId] }),
+    onSuccess: () => { if (!userId) return; qc.invalidateQueries({ queryKey: ['portfolio', userId] }); },
   });
 }
 
@@ -40,6 +40,6 @@ export function useRemoveHolding() {
   const { userId } = useAuth();
   return useMutation({
     mutationFn: (ticker: string) => removeHolding(ticker),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['portfolio', userId] }),
+    onSuccess: () => { if (!userId) return; qc.invalidateQueries({ queryKey: ['portfolio', userId] }); },
   });
 }

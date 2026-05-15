@@ -28,7 +28,7 @@ export function useAddToWatchlist() {
   const { userId } = useAuth();
   return useMutation({
     mutationFn: (ticker: string) => addToWatchlist(ticker),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['watchlist', userId] }),
+    onSuccess: () => { if (!userId) return; qc.invalidateQueries({ queryKey: ['watchlist', userId] }); },
   });
 }
 
@@ -37,6 +37,6 @@ export function useRemoveFromWatchlist() {
   const { userId } = useAuth();
   return useMutation({
     mutationFn: (ticker: string) => removeFromWatchlist(ticker),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['watchlist', userId] }),
+    onSuccess: () => { if (!userId) return; qc.invalidateQueries({ queryKey: ['watchlist', userId] }); },
   });
 }
