@@ -24,10 +24,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
-    SecureStore.getItemAsync('jwt').then((t) => {
-      setToken(t);
-      setUserId(t ? decodeUserId(t) : null);
-    });
+    SecureStore.getItemAsync('jwt')
+      .then((t) => {
+        setToken(t);
+        setUserId(t ? decodeUserId(t) : null);
+      })
+      .catch(() => {
+        setToken(null);
+        setUserId(null);
+      });
   }, []);
 
   async function signIn(jwt: string) {

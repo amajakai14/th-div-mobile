@@ -31,7 +31,7 @@ function NavigationGuard() {
     const inAuthGroup = segments[0] === '(auth)';
     if (!token && !inAuthGroup) router.replace('/(auth)/login');
     if (token && inAuthGroup) router.replace('/(tabs)');
-  }, [token, segments]);
+  }, [token, segments, router]);
 
   if (token === undefined) return null;
 
